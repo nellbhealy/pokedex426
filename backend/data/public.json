@@ -1,0 +1,8 @@
+{
+  "pokemon": {
+    "bulbasaur": {
+      "likes": 1,
+      "dislikes": 0
+    }
+  }
+}

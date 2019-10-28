@@ -1,0 +1,11 @@
+{
+  "users": {
+    "chris": {
+      "passwordHash": "$2b$10$SQl/3xZVbqPR9Ph6ZqRsIOSJ82HVGgwekNbCiHw8TPsLfL5SWtBIS",
+      "data": {
+        "role": 2,
+        "description": "Lazy..."
+      }
+    }
+  }
+}
