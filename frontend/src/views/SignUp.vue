@@ -1,5 +1,8 @@
 <template>
-  <v-form>
+  <v-form
+    ref="form"
+    v-model="valid"
+  >
   <h1>Sign up</h1>
   <v-text-field
       v-model="name"
@@ -18,6 +21,7 @@
 
     <v-text-field
       v-model="password"
+      :rules="passwordRules"
       :type="'password'"
       label="Password"
       required
@@ -26,7 +30,7 @@
     <v-checkbox
       v-model="checkbox"
       :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
+      label="I promise I will use this account only in the spirit of Pokémon!"
       required
     ></v-checkbox>
 
@@ -51,7 +55,7 @@
       color="red darken-3"
       dark 
       depressed
-      @click="resetValidation"
+      @click="submitForm"
     >
       Sign up
     </v-btn>
@@ -74,7 +78,10 @@ export default {
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
     password: '',
-    passwordRules: [v => !!v || "Password is required", v => (v && v.length <= 10)],
+    passwordRules: [
+      v => !!v || "Password is required", 
+      v => (v && v.length >= 6) || "Password must be at least 6 characters"
+      ],
     checkbox: false,
   }),
   methods: {
@@ -84,10 +91,13 @@ export default {
       }
     },
     reset () {
-      this.$refs.form.reset()
+      this.$refs.form.reset();
     },
     resetValidation () {
-      this.$refs.form.resetValidation()
+      this.$refs.form.resetValidation();
+    },
+    submitForm () {
+      this.$refs.form.submit();
     },
   },
 };

@@ -14,6 +14,7 @@
 
     <v-text-field
       v-model="password"
+      :rules="passwordRules"
       :type="'password'"
       label="Password"
       required
@@ -35,7 +36,10 @@ export default {
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
     password: '',
-    passwordRules: [v => !!v || "Password is required"],
+    passwordRules: [
+      v => !!v || "Password is required", 
+      v => (v && v.length >= 6) || "Password must be at least 6 characters"
+      ],
   }),
   methods: {
     validate () {
