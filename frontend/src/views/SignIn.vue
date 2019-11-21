@@ -20,7 +20,14 @@
       required
     ></v-text-field>
 
-    <v-btn color="red darken-3" dark depressed @click="resetValidation">Sign in</v-btn>
+    <v-btn 
+      color="red darken-3" 
+      dark depressed 
+      @click="submitForm"
+    >
+      Sign in
+    </v-btn>
+
     <router-link to="/signup">Don't have an account? Create one here.</router-link>
   </v-form>
 </template>
@@ -51,8 +58,15 @@ export default {
     reset () {
       this.$refs.form.reset()
     },
-    resetValidation () {
-      this.$refs.form.resetValidation()
+    submitForm () {
+      let poster = async function(n, p, v){
+        let result = await v.pubRoot.post('account/login',
+            { "name": n,
+              "pass": p,              
+            }
+        ).catch(function(error){console.log(error);});
+      }
+      poster(this.name, this.password, this);
     },
   }
 };

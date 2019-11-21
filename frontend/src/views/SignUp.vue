@@ -107,7 +107,6 @@ export default {
               
             }
         }).catch(function(error){console.log(error);});
-        console.log(result);
       }
       poster(this.name, this.password, this.email, this);
     },
