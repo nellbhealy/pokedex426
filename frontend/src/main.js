@@ -13,5 +13,10 @@ Vue.prototype.pubRoot = new axios.create({
 new Vue({
   router,
   vuetify,
-  render: h => h(App)
+  render: h => h(App),
+  data: {
+    header: 'Log in to gain full access',
+    user: '',
+    jwt: '',
+  }
 }).$mount('#app');

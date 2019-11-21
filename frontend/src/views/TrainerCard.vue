@@ -4,7 +4,7 @@
       <v-row>
           <v-col>
             <div class="caption grey--text">Trainer Name</div>
-            <div>Tasnia</div>
+            <div id="trainer"></div>
           </v-col>
           <v-col>
             <div class="caption grey--text">PERSON</div>
@@ -21,12 +21,13 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: "trainercard"
 };
+
+
+
 </script>
 
 <style>

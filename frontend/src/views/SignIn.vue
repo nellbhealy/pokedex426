@@ -59,15 +59,20 @@ export default {
       this.$refs.form.reset()
     },
     submitForm () {
-      let poster = async function(n, p, v){
+      let poster = async function(n,p,v){
         let result = await v.pubRoot.post('account/login',
             { "name": n,
               "pass": p,              
             }
-        ).catch(function(error){console.log(error);});
-      }
+        ).catch(function(error){console.log(error); return;});
+        let tempJwt =  await JSON.parse(JSON.stringify(result.data));
+        v.$root.jwt = tempJwt.jwt;
+        v.$root.user = tempJwt.name;
+        v.$root.header = "Hello ";
+      };
       poster(this.name, this.password, this);
+      
     },
-  }
+  },
 };
 </script>
