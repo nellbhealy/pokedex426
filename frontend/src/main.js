@@ -19,5 +19,6 @@ new Vue({
     header: 'Log in to gain full access',
     user: '',
     jwt: '',
+    showCard: 'none'
   }
 }).$mount('#app');

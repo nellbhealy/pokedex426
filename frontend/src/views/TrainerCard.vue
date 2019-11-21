@@ -1,7 +1,7 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card ripple :elevation="hover ? 5 : 2" class='pl-3'>
-      <v-row>
+      <v-row id="visible" :style="{'--show-card': $root.showCard }">
           <v-col>
             <div class="caption grey--text">Trainer Name</div>
             <div id="trainer">{{$root.user}}</div>
@@ -31,4 +31,7 @@ export default {
 </script>
 
 <style>
+  #visible {
+    display: var(--show-card);
+    }
 </style>

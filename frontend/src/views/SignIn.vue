@@ -69,6 +69,7 @@ export default {
         v.$root.jwt = tempJwt.jwt;
         v.$root.user = tempJwt.name;
         v.$root.header = "Hello ";
+        v.$root.showCard = "block";
         v.$root.router.push('/trainercard');
       };
       poster(this.name, this.password, this);

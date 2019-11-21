@@ -10,7 +10,7 @@
             <v-tabs :vertical="true" color="red darken-3" background-color="transparent">
               <v-tab key="pokedex" to="/pokedex">Pokedex</v-tab>
               <v-tab key="teams" to="/teams">Browse Teams</v-tab>
-              <v-tab key="mytrainercard" to="/trainercard">Trainer Card</v-tab>
+              <v-tab id="tCard" :style="{'--show-card': $root.showCard }" key="mytrainercard" to="/trainercard">Trainer Card</v-tab>
             </v-tabs>
           </nav>
         </v-col>
@@ -30,9 +30,7 @@ export default {
   name: "App",
   data () {
     return {
-      header: 'Log in to gain full access',
-      user: '',
-      jwt: '',
+   
     }
   }
 };
@@ -53,6 +51,10 @@ body {
   background-color: #fafafa;
 }
 
+/* Hides trainer card tab if not logged in */
+#tCard {
+  display: var(--show-card);
+}
 /* Puts the navigation tabs on the left center of the screen */
 nav {
   position: fixed;
