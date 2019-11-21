@@ -103,8 +103,8 @@ export default {
             { "name": n,
               "pass": p,
               "data": {
-                "email": e
-              
+                "email": e,
+                "team": {}
             }
         }).catch(function(error){console.log(error);});
       }

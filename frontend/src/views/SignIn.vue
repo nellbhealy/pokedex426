@@ -48,7 +48,7 @@ export default {
       v => !!v || "Password is required", 
       v => (v && v.length >= 6) || "Password must have at least 6 characters"
       ],
-  }),
+  }), 
   methods: {
     validate () {
       if (this.$refs.form.validate()) {
@@ -69,6 +69,7 @@ export default {
         v.$root.jwt = tempJwt.jwt;
         v.$root.user = tempJwt.name;
         v.$root.header = "Hello ";
+        v.$root.router.push('/trainercard');
       };
       poster(this.name, this.password, this);
       

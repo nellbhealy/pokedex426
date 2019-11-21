@@ -15,7 +15,7 @@
               :to="{name: 'details', params: {...pokemon}, id: pokemon.name}"
               class='text-capitalize font-weight-bold black--text no-underline'
             >{{pokemon.name}}</router-link>
-          <p class="caption grey--text">#00{{pokemon.id}}</p>
+          <p class="caption grey--text">#{{pokemon.id}}</p>
 
           </v-card-title>
           

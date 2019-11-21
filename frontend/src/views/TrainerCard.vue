@@ -4,7 +4,7 @@
       <v-row>
           <v-col>
             <div class="caption grey--text">Trainer Name</div>
-            <div id="trainer"></div>
+            <div id="trainer">{{$root.user}}</div>
           </v-col>
           <v-col>
             <div class="caption grey--text">PERSON</div>

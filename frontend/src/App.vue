@@ -4,7 +4,7 @@
       <v-row>
         <!--Spacer for the navigation menu-->
         <v-col cols='4'>
-          <p id="greeting" class="overline" color="red darken-3">{{this.$root.header}}{{this.$root.user}}!</p>
+          <p id="greeting" class="overline" color="red darken-3">{{$root.header}}{{$root.user}}!</p>
           <v-btn outlined color="red darken-3" class="mt-4" to="/signin">Sign in</v-btn>
           <nav>
             <v-tabs :vertical="true" color="red darken-3" background-color="transparent">
