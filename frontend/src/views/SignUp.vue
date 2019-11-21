@@ -80,7 +80,7 @@ export default {
     password: '',
     passwordRules: [
       v => !!v || "Password is required", 
-      v => (v && v.length >= 6) || "Password must be at least 6 characters"
+      v => (v && v.length >= 6) || "Password must have at least 6 characters"
       ],
     checkbox: false,
   }),
@@ -97,7 +97,19 @@ export default {
       this.$refs.form.resetValidation();
     },
     submitForm () {
-      this.$refs.form.submit();
+
+      let poster = async function(n, p, e, v){
+        let result = await v.pubRoot.post('account/create',
+            { "name": n,
+              "pass": p,
+              "data": {
+                "email": e
+              
+            }
+        }).catch(function(error){console.log(error);});
+        console.log(result);
+      }
+      poster(this.name, this.password, this.email, this);
     },
   },
 };

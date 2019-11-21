@@ -6,9 +6,9 @@
     <h1>Sign in</h1>
 
     <v-text-field 
-      v-model="email"
-      :rules="emailRules" 
-      label="E-mail" 
+      v-model="name"
+      :rules="nameRules" 
+      label="Name" 
       required
       ></v-text-field>
 
@@ -27,18 +27,19 @@
 
 <script>
 export default {
+  name: "signin",
   data: () => ({
-    name: "signin",
+    name: '',
     valid: true,
     email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
     password: '',
     passwordRules: [
       v => !!v || "Password is required", 
-      v => (v && v.length >= 6) || "Password must be at least 6 characters"
+      v => (v && v.length >= 6) || "Password must have at least 6 characters"
       ],
   }),
   methods: {
