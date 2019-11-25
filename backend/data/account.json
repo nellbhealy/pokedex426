@@ -9,6 +9,13 @@
     },
     "tasnia": {
       "passwordHash": "$2b$10$sWQu57QD7rEaJB3rFM4upOtZkKlZ0V9RJ0j5CcdIZAV06IbBYp5vC"
+    },
+    "tasnia2": {
+      "passwordHash": "$2b$10$wrl5OtVV3lAaVPBh57XMPepjwR.wTiOev5JmK.Sqj1PAcwsQacInC",
+      "data": {
+        "email": "tasnias@gmail.com",
+        "team": {}
+      }
     }
   }
 }

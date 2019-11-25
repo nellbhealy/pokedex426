@@ -1,23 +1,16 @@
 <template>
-  <v-form
-    ref="form"
-    v-model="valid"
-  >
-  <h1>Sign up</h1>
-  <v-text-field
+  <v-form ref="form" v-model="valid">
+    <h1>Sign up</h1>
+    <v-text-field
       v-model="name"
       :counter="10"
       :rules="nameRules"
-      label="Name"
+      label="Trainer Name"
       required
+      color="red darken-3"
     ></v-text-field>
 
-    <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
-      required
-    ></v-text-field>
+    <v-text-field v-model="email" :rules="emailRules" label="E-mail" required color="red darken-3"></v-text-field>
 
     <v-text-field
       v-model="password"
@@ -25,6 +18,7 @@
       :type="'password'"
       label="Password"
       required
+      color="red darken-3"
     ></v-text-field>
 
     <v-checkbox
@@ -32,33 +26,27 @@
       :rules="[v => !!v || 'You must agree to continue!']"
       label="I promise I will use this account only in the spirit of Pokémon!"
       required
+      color="red darken-3"
     ></v-checkbox>
 
-    <v-btn
+    <!-- <v-btn
       :disabled="!valid"
       color="success"
       class="mr-4"
       @click="validate"
     >
       Validate
-    </v-btn>
+    </v-btn>-->
 
-    <v-btn
+    <!-- <v-btn
       color="error"
       class="mr-4"
       @click="reset"
     >
       Reset Form
-    </v-btn>
+    </v-btn>-->
 
-    <v-btn
-      color="red darken-3"
-      dark 
-      depressed
-      @click="submitForm"
-    >
-      Sign up
-    </v-btn>
+    <v-btn color="red darken-3" dark depressed @click="submitForm">Sign up</v-btn>
   </v-form>
 </template>
 
@@ -66,50 +54,53 @@
 export default {
   name: "signup",
   data: () => ({
-    name: '',
+    name: "",
     valid: true,
     nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      ],
-    email: '',
+      v => !!v || "Trainer Name is required",
+      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ],
+    email: "",
     emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-    password: '',
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ],
+    password: "",
     passwordRules: [
-      v => !!v || "Password is required", 
+      v => !!v || "Password is required",
       v => (v && v.length >= 6) || "Password must have at least 6 characters"
-      ],
-    checkbox: false,
+    ],
+    checkbox: false
   }),
   methods: {
-    validate () {
+    validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
       }
     },
-    reset () {
+    reset() {
       this.$refs.form.reset();
     },
-    resetValidation () {
+    resetValidation() {
       this.$refs.form.resetValidation();
     },
-    submitForm () {
-
-      let poster = async function(n, p, e, v){
-        let result = await v.pubRoot.post('account/create',
-            { "name": n,
-              "pass": p,
-              "data": {
-                "email": e,
-                "team": {}
+    submitForm() {
+      let poster = async function(n, p, e, v) {
+        let result = await v.pubRoot
+          .post("account/create", {
+            name: n,
+            pass: p,
+            data: {
+              email: e,
+              team: {}
             }
-        }).catch(function(error){console.log(error);});
-      }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      };
       poster(this.name, this.password, this.email, this);
-    },
-  },
+    }
+  }
 };
 </script>
