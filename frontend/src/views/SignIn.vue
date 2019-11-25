@@ -1,17 +1,65 @@
 <template>
-  <v-form>
+  <v-form ref="form" v-model="valid">
     <h1>Sign in</h1>
-    <v-text-field v-model="email" color="red darken-3" label="E-mail" required></v-text-field>
-
-    <v-text-field v-model="password" type='password' color="red darken-3" label="Password" required></v-text-field>
-
-    <v-btn color="red darken-3" dark depressed @click="resetValidation">Sign in</v-btn>
-    <v-btn depressed to="/signup">Create account</v-btn>
+    <v-text-field v-model="name" :rules="nameRules" label="Name" required></v-text-field>
+    <v-text-field
+      v-model="password"
+      :rules="passwordRules"
+      :type="'password'"
+      label="Password"
+      required
+    ></v-text-field>
+    <v-btn color="red darken-3" dark depressed @click="submitForm">Sign in</v-btn>
+    <v-btn depressed to="/signup">Create Account</v-btn>
   </v-form>
 </template>
 
 <script>
 export default {
-  name: "signin"
+  name: "signin",
+  data: () => ({
+    name: "",
+    valid: true,
+    email: "",
+    nameRules: [
+      v => !!v || "Name is required",
+      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ],
+    password: "",
+    passwordRules: [
+      v => !!v || "Password is required",
+      v => (v && v.length >= 6) || "Password must have at least 6 characters"
+    ]
+  }),
+  methods: {
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+      }
+    },
+    reset() {
+      this.$refs.form.reset();
+    },
+    submitForm() {
+      let poster = async function(n, p, v) {
+        let result = await v.pubRoot
+          .post("account/login", { name: n, pass: p })
+          .catch(function(error) {
+            console.log(error);
+            return;
+          });
+        let tempJwt = await JSON.parse(JSON.stringify(result.data));
+        sessionStorage.setItem("jwt", tempJwt.jwt);
+        sessionStorage.setItem("user", tempJwt.name);
+        v.$root.jwt = tempJwt.jwt;
+        v.$root.user = tempJwt.name;
+        v.$root.header = "Hello ";
+        v.$root.showCard = "block";
+        v.$root.router.push("/trainercard");
+        console.log('worked')
+      };
+      poster(this.name, this.password, this);
+    }
+  }
 };
 </script>

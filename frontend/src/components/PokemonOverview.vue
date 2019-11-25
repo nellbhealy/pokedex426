@@ -82,6 +82,8 @@ export default {
       this.isLiked = result.userLiked;
       this.isDisliked = result.userDisliked;
     });
+        this.user = sessionStorage.getItem('user');
+
   },
 
   methods: {

@@ -1,17 +1,13 @@
 <template>
   <v-hover v-slot:default="{ hover }">
-    <v-card ripple :elevation="hover ? 5 : 2" class="pl-3">
+    <v-card ripple :elevation="hover ? 5 : 2" class='pl-3' v-if="trainername != null">
       <v-row>
-        <v-col>
-          <div class="caption grey--text">Trainer Name</div>
-          <div>{{trainername}}</div>
-        </v-col>
-        <v-col>
-          <div class="caption grey--text">Email</div>
-          <div>email@email.com</div>
-        </v-col>
-      </v-row>
-      <v-row>
+          <v-col>
+            <div class="caption grey--text">Trainer Name</div>
+            <div id="trainer">{{trainername}}</div>
+          </v-col>
+        </v-row>
+        <v-row>
         <v-col>
           <v-progress-circular :rotate="360" :size="100" :width="15" :value="team.length / 6 * 100" color="red darken-3">{{team.length}} / 6</v-progress-circular>
         </v-col>
@@ -27,8 +23,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: "trainercard",
@@ -46,11 +40,8 @@ export default {
   methods: {
     fetchTrainerInfo: async function() {
       // make backend call to get info of logged in user, if there is one
-      this.trainername = 'tasnia';
+      this.trainername = sessionStorage.getItem('user');
     }
   }
 };
 </script>
-
-<style>
-</style>

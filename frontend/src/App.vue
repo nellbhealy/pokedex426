@@ -4,13 +4,13 @@
       <v-row>
         <!--Spacer for the navigation menu-->
         <v-col cols='4'>
-          <v-btn outlined color="red darken-3" class="mt-4" to="/signin">Sign in</v-btn>
+          <p id="greeting" class="overline" color="red darken-3">{{$root.header}}{{$root.user}}!</p>
+          <v-btn v-if="user === null" outlined color="red darken-3" class="mt-4" to="/signin">Sign in</v-btn>
           <nav>
             <v-tabs :vertical="true" color="red darken-3" background-color="transparent">
               <v-tab key="pokedex" to="/pokedex">Pokedex</v-tab>
               <v-tab key="teams" to="/teams">Browse Teams</v-tab>
-              <v-tab key="mytrainercard" to="/trainercard">Trainer Card</v-tab>
-              <v-tab key="signin" to="/signin">Sign in</v-tab>
+              <v-tab key="mytrainercard" to="/trainercard" :disabled="user === null ? true : false">Trainer Card</v-tab>
             </v-tabs>
           </nav>
         </v-col>
@@ -27,7 +27,16 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  data () {
+    return {
+      user: null,
+    }
+  },
+
+  mounted() {
+    this.user = sessionStorage.getItem('user');
+  }
 };
 </script>
 
@@ -46,6 +55,10 @@ body {
   background-color: #fafafa;
 }
 
+/* Hides trainer card tab if not logged in */
+/* #tCard {
+  display: var(--show-card);
+} */
 /* Puts the navigation tabs on the left center of the screen */
 nav {
   position: fixed;
