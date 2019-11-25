@@ -2,7 +2,8 @@
 <template>
   <div>
     <!-- Autocomplete search for Pokemon -->
-    <v-autocomplete dense dark filled label="Search for Pokemon" :items="pokemon"></v-autocomplete>
+    <!-- TODO: make this go to details page on click -->
+    <v-autocomplete dense dark filled label="Search for Pokemon" :items="pokemon" v-model="search"></v-autocomplete>
 
     <!-- List of all Pokemon, which is dynamically fetched and rendered -->
     <PokemonOverview
@@ -28,6 +29,7 @@ export default {
   },
   data() {
     return {
+      search: null,
       fetchedPokemon: [],
       //use this pre-defined array for autocomplete to save time
       pokemon: [
@@ -59,10 +61,10 @@ export default {
         "Raichu",
         "Sandshrew",
         "Sandslash",
-        "Nidoran♀",
+        "Nidoran-F",
         "Nidorina",
         "Nidoqueen",
-        "Nidoran♂",
+        "Nidoran-M",
         "Nidorino",
         "Nidoking",
         "Clefairy",
@@ -840,8 +842,27 @@ export default {
         "Zeraora",
         "Meltan",
         "Melmetal"
-      ]
+      ],
+      // pokemonToRender: []
     };
+  },
+
+  watch: {
+    search: async function(curr, old) {
+      if (curr != null) {
+        let pokemon = this.fetchedPokemon.find((element) => {console.log(element.name); return element.name === curr.toLowerCase()});
+        console.log(pokemon, curr.toLowerCase());
+        //if not in fetchedPokemon, fetch that particular pokemon now
+        if (pokemon === undefined) {
+          let response = await fetch(
+          `https://fizal.me/pokeapi/api/v2/name/${curr.toLowerCase()}.json`
+        );
+          pokemon = await response.json();
+        }
+        //redirect with that pokemon's info in the path parameters 
+        this.$router.push({name: 'details', params: {...pokemon}, id: pokemon.name})
+      }
+    }
   },
 
   mounted() {
@@ -871,9 +892,7 @@ export default {
     //get pokemon from API
     fetchPokemon: async function() {
       let offset = this.fetchedPokemon.length + 1;
-      // console.log('offset', offset);
       for (let i = offset; i < offset + 5; i++) {
-        // console.log(i);
         // using this wrapper URL which caches pokeapi data
         let response = await fetch(
           `https://fizal.me/pokeapi/api/v2/id/${i}.json`
@@ -885,7 +904,6 @@ export default {
             ? false
             : true;
         if (!found) {
-          // console.log('unique', i, data.name);
           this.fetchedPokemon.push(data);
         }
       }

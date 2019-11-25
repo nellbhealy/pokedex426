@@ -6,6 +6,9 @@
         "role": 2,
         "description": "Lazy..."
       }
+    },
+    "tasnia": {
+      "passwordHash": "$2b$10$sWQu57QD7rEaJB3rFM4upOtZkKlZ0V9RJ0j5CcdIZAV06IbBYp5vC"
     }
   }
 }

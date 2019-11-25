@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'pokedex'
+  name: 'pokedex', 
 }
 </script>
 
@@ -22,16 +22,15 @@ export default {
   width: 650px;
   height: 100px;
   position: fixed;
-  top:0;
+  top:-.4rem;
   margin-top: 0;
   padding-top: 0;
   z-index: 3;
 }
   #pokedexBody {
-    padding-top: 20vh;
+    padding-top: 100px;
     background-color: #C10000;
     min-height: 80vh;
-    /* max-height: 80vh; */
     width: 600px;
     display: flex;
     flex-direction: column;

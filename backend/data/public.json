@@ -2,7 +2,54 @@
   "pokemon": {
     "bulbasaur": {
       "likes": 1,
-      "dislikes": 0
+      "dislikes": 1
+    },
+    "ivysaur": {
+      "likes": 3,
+      "dislikes": 2
+    },
+    "venusaur": {
+      "likes": 1
+    },
+    "wartortle": {
+      "dislikes": 2,
+      "likes": 2
+    },
+    "raticate": {
+      "dislikes": 1
+    },
+    "spearow": {
+      "dislikes": 1
+    },
+    "fearow": {
+      "dislikes": 1
+    },
+    "pidgeot": {
+      "dislikes": 1,
+      "likes": 1
+    },
+    "pidgeotto": {
+      "likes": 1
+    },
+    "beedrill": {
+      "dislikes": 1
+    },
+    "kakuna": {
+      "dislikes": 1
+    },
+    "charizard": {
+      "dislikes": 1,
+      "likes": 1
+    },
+    "blastoise": {
+      "likes": 1
+    },
+    "squirtle": {
+      "dislikes": 1
+    },
+    "jigglypuff": {
+      "dislikes": 1,
+      "likes": 1
     }
   }
 }

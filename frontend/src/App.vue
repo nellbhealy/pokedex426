@@ -10,6 +10,7 @@
               <v-tab key="pokedex" to="/pokedex">Pokedex</v-tab>
               <v-tab key="teams" to="/teams">Browse Teams</v-tab>
               <v-tab key="mytrainercard" to="/trainercard">Trainer Card</v-tab>
+              <v-tab key="signin" to="/signin">Sign in</v-tab>
             </v-tabs>
           </nav>
         </v-col>
