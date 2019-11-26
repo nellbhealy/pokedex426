@@ -16,9 +16,5 @@ new Vue({
   vuetify,
   render: h => h(App),
   data: {
-    header: 'Log in to gain full access',
-    user: '',
-    jwt: '',
-    showCard: 'none'
   }
 }).$mount('#app');

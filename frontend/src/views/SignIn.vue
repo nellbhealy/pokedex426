@@ -42,21 +42,21 @@ export default {
     },
     submitForm() {
       let poster = async function(n, p, v) {
+        let tempJwt;
         let result = await v.pubRoot
           .post("account/login", { name: n, pass: p })
           .catch(function(error) {
             console.log(error);
             return;
           });
-        let tempJwt = await JSON.parse(JSON.stringify(result.data));
+        tempJwt = JSON.parse(JSON.stringify(result.data));
         sessionStorage.setItem("jwt", tempJwt.jwt);
         sessionStorage.setItem("user", tempJwt.name);
-        v.$root.jwt = tempJwt.jwt;
-        v.$root.user = tempJwt.name;
-        v.$root.header = "Hello ";
-        v.$root.showCard = "block";
+        console.log(v);
+        v.$root.$children[0].user = tempJwt.name;
+        v.$root.$children[0].header = "Hello ";
         v.$root.router.push("/trainercard");
-        console.log('worked')
+
       };
       poster(this.name, this.password, this);
     }

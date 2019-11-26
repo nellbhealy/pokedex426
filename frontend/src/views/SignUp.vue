@@ -97,7 +97,7 @@ export default {
           })
           .catch(function(error) {
             console.log(error);
-          });
+          }).then(v.$root.router.push("/signin"));
       };
       poster(this.name, this.password, this.email, this);
     }

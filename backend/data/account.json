@@ -16,6 +16,13 @@
         "email": "tasnias@gmail.com",
         "team": {}
       }
+    },
+    "liam!": {
+      "passwordHash": "$2b$10$YsJyuG5dRTCg5SSEDhzWMuflATqTX6McPQ947KT3XwqsLGVg6lpSy",
+      "data": {
+        "email": "lwbecker@live.unc.edu",
+        "team": {}
+      }
     }
   }
 }

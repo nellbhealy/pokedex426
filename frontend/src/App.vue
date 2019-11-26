@@ -4,7 +4,7 @@
       <v-row>
         <!--Spacer for the navigation menu-->
         <v-col cols='4'>
-          <p id="greeting" class="overline" color="red darken-3">{{$root.header}}{{$root.user}}!</p>
+          <p id="greeting" class="overline" color="red darken-3">{{this.header}}{{this.user}}!</p>
           <v-btn v-if="user === null" outlined color="red darken-3" class="mt-4" to="/signin">Sign in</v-btn>
           <nav>
             <v-tabs :vertical="true" color="red darken-3" background-color="transparent">
@@ -31,11 +31,15 @@ export default {
   data () {
     return {
       user: null,
+      header:'Log in to gain full access'
     }
   },
 
   mounted() {
     this.user = sessionStorage.getItem('user');
+    if(this.user != null){
+      this.header = "Hello ";
+    }
   }
 };
 </script>
