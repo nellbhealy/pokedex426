@@ -1,15 +1,16 @@
 {
   "pokemon": {
     "bulbasaur": {
-      "likes": 2,
+      "likes": 1,
       "dislikes": 2
     },
     "ivysaur": {
       "likes": 3,
-      "dislikes": 2
+      "dislikes": 4
     },
     "venusaur": {
-      "likes": 1
+      "likes": 1,
+      "dislikes": 0
     },
     "wartortle": {
       "dislikes": 2,
@@ -39,7 +40,7 @@
     },
     "charizard": {
       "dislikes": 1,
-      "likes": 1
+      "likes": 0
     },
     "blastoise": {
       "likes": 1
@@ -50,6 +51,16 @@
     "jigglypuff": {
       "dislikes": 1,
       "likes": 1
+    },
+    "metapod": {
+      "dislikes": 0
+    },
+    "golduck": {
+      "likes": 1
+    },
+    "charmander": {
+      "likes": 0,
+      "dislikes": 0
     }
   }
 }

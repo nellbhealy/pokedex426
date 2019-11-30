@@ -29,7 +29,14 @@
         <!-- Team button -->
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn text icon class="ml-2" @click="handleTeamButton()" v-on="on" :disabled="user === null ? true : false">
+            <v-btn
+              text
+              icon
+              class="ml-2"
+              @click="handleTeamButton()"
+              v-on="on"
+              :disabled="user === null ? true : false"
+            >
               <v-icon :color="isOnTeam ?
                'red': 'gray'">mdi-pokeball</v-icon>
             </v-btn>
@@ -100,20 +107,14 @@ export default {
       isLiked: false,
       isDisliked: false,
       isOnTeam: false,
-      pokemon: null, 
-      user: null,
+      pokemon: null,
+      user: null
     };
   },
   mounted() {
     window.scrollTo(0, 0);
     this.pokemon = this.$route.params;
-    this.getBackendInfo(this.pokemon.name).then(result => {
-      this.numDislikes = result.dislikes === undefined ? 0 : result.dislikes;
-      this.numLikes = result.likes === undefined ? 0 : result.likes;
-      this.isLiked = result.userLiked;
-      this.isDisliked = result.userDisliked;
-    });
-    this.user = sessionStorage.getItem('user');
+    this.getBackendInfo(this.pokemon.name);
   },
 
   methods: {
@@ -122,26 +123,36 @@ export default {
         `http://localhost:3000/public/pokemon/${pokemon}`
       );
       pokemonInfo = await pokemonInfo.json();
-      let info = {};
       if (pokemonInfo["err"] === undefined) {
-        info = pokemonInfo.result;
+        this.numLikes =
+          pokemonInfo.result.likes === undefined
+            ? 0
+            : pokemonInfo.result.likes;
+        this.numDislikes =
+          pokemonInfo.result.dislikes === undefined
+            ? 0
+            : pokemonInfo.result.dislikes;
       }
-      let found = false;
-      // let userInfo = await fetch(...)
 
-      return {
-        ...info,
-        userLiked:
-          (sessionStorage.getItem(`[${pokemon}][like]`) === null) |
-          (sessionStorage.getItem(`[${pokemon}][like]`) === false)
-            ? false
-            : true,
-        userDisliked:
-          (sessionStorage.getItem(`[${pokemon}][dislike]`) === null) |
-          (sessionStorage.getItem(`[${pokemon}][dislike]`) === false)
-            ? false
-            : true
-      };
+      if (sessionStorage.getItem(`[${pokemon}][like]`) === null) {
+        this.isLiked = false;
+      } else {
+        this.isLiked =
+          sessionStorage.getItem(`[${pokemon}][like]`).toString() === "true"
+            ? true
+            : false;
+      }
+
+      if (sessionStorage.getItem(`[${pokemon}][dislike]`) === null) {
+        this.isDisliked = false;
+      } else {
+        this.isDisliked =
+          sessionStorage.getItem(`[${pokemon}][dislike]`).toString() === "true"
+            ? true
+            : false;
+      }
+
+      this.user = sessionStorage.getItem("user");
     },
 
     handleLike: async function() {

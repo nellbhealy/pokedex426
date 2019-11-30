@@ -76,14 +76,7 @@ export default {
   },
 
   mounted() {
-    this.getBackendInfo(this.pokemon.name).then(result => {
-      this.numDislikes = result.dislikes === undefined ? 0 : result.dislikes;
-      this.numLikes = result.likes === undefined ? 0 : result.likes;
-      this.isLiked = result.userLiked;
-      this.isDisliked = result.userDisliked;
-    });
-        this.user = sessionStorage.getItem('user');
-
+    this.getBackendInfo(this.pokemon.name);
   },
 
   methods: {
@@ -92,28 +85,40 @@ export default {
         `http://localhost:3000/public/pokemon/${pokemon}`
       );
       pokemonInfo = await pokemonInfo.json();
-      let info = {};
       if (pokemonInfo["err"] === undefined) {
-        info = pokemonInfo.result;
-      }
-      let found = false;
-      // let userInfo = sessionStorage.get(pokemon);
+        console.log("likes for", pokemon, pokemonInfo.result);
 
-      // if user is logged in, fetch their data
-      // let userInfo = await fetch(...)
-      return {
-        ...info,
-        userLiked:
-          (sessionStorage.getItem(`[${pokemon}][like]`) === null) |
-          (sessionStorage.getItem(`[${pokemon}][like]`) === false)
-            ? false
-            : true,
-        userDisliked:
-          (sessionStorage.getItem(`[${pokemon}][dislike]`) === null) |
-          (sessionStorage.getItem(`[${pokemon}][dislike]`) === false)
-            ? false
-            : true
-      };
+        this.numLikes =
+          pokemonInfo.result.likes === undefined
+            ? 0
+            : pokemonInfo.result.likes;
+        this.numDislikes =
+          pokemonInfo.result.dislikes === undefined
+            ? 0
+            : pokemonInfo.result.dislikes;
+      }
+
+      if (sessionStorage.getItem(`[${pokemon}][like]`) === null) {
+        this.isLiked = false;
+      } else {
+        this.isLiked =
+          sessionStorage.getItem(`[${pokemon}][like]`).toString() === "true"
+            ? true
+            : false;
+      }
+
+      if (sessionStorage.getItem(`[${pokemon}][dislike]`) === null) {
+        this.isDisliked = false;
+      } else {
+        this.isDisliked =
+          sessionStorage.getItem(`[${pokemon}][dislike]`).toString() === "true"
+            ? true
+            : false;
+      }
+
+      this.user = sessionStorage.getItem("user");
+
+      // if user is logged in, fetch their data and override session values
     },
 
     handleLike: async function() {
