@@ -1,2 +1,23 @@
 {
+  "bob": {
+    "likes": [
+      "piplup",
+      "charizard",
+      "charmeleon",
+      "squirtle",
+      "wartortle",
+      "caterpie",
+      "venusaur",
+      "charmander",
+      "bulbasaur",
+      "ivysaur"
+    ],
+    "dislikes": [
+      "charmeleon",
+      "blastoise",
+      "venusaur",
+      "bulbasaur",
+      "ivysaur"
+    ]
+  }
 }

@@ -86,12 +86,8 @@ export default {
       );
       pokemonInfo = await pokemonInfo.json();
       if (pokemonInfo["err"] === undefined) {
-        console.log("likes for", pokemon, pokemonInfo.result);
-
         this.numLikes =
-          pokemonInfo.result.likes === undefined
-            ? 0
-            : pokemonInfo.result.likes;
+          pokemonInfo.result.likes === undefined ? 0 : pokemonInfo.result.likes;
         this.numDislikes =
           pokemonInfo.result.dislikes === undefined
             ? 0
@@ -119,6 +115,23 @@ export default {
       this.user = sessionStorage.getItem("user");
 
       // if user is logged in, fetch their data and override session values
+      if (this.user != null) {
+        let team = await fetch(
+          `http://localhost:3000/private/teams/${this.user}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            }
+          }
+        );
+
+        team = await team.json();
+        if (team["err"] === undefined) {
+          this.isOnTeam = team.result.find(name => name === pokemon);
+        }
+      }
     },
 
     handleLike: async function() {
@@ -135,19 +148,65 @@ export default {
           body: `{"data": ${this.numLikes}}`
         }
       );
-      //update liked list in backend user/name
+
       // if not logged in, go to session storage
       sessionStorage.setItem(`[${this.pokemon.name}][like]`, this.isLiked);
       // otherwise, set in backend
+      if (this.user != null) {
+        if (this.isLiked) {
+          console.log("Bearer", sessionStorage.getItem("jwt"));
+          await fetch(`http://localhost:3000/user/likes`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            },
+            body: `{"data": ["${this.pokemon.name}"], "type": "merge"}`
+          });
+        } else {
+          // get array of likes
+          let likes = await fetch(`http://localhost:3000/user/likes`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            }
+          });
+
+          likes = await likes.json();
+          if (likes["err"] === undefined) {
+            likes = likes.result;
+          } else {
+            likes = [];
+          }
+          // update pokemon in array of likes
+          if (this.isLiked == false) {
+            likes = likes.filter(name => name != this.pokemon.name);
+            await fetch(`http://localhost:3000/user/likes`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+              },
+              body: `{"data": ${JSON.stringify(likes)}}`
+            });
+          }
+          await fetch(`http://localhost:3000/user/likes`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            },
+            body: `{"data": ["${this.pokemon.name}"], "type": "merge"}`
+          });
+        }
+      }
     },
 
     handleDislike: async function() {
       this.isDisliked = !this.isDisliked;
-      this.numDislikes = this.isDisliked
-        ? this.numDislikes + 1
-        : this.numDislikes - 1;
-
-      //update count in backend pokemon/name
+      this.numDislikes = this.isDisliked ? this.numDislikes + 1 : this.numDislikes - 1;
+      //update like count in backend pokemon/name
       await fetch(
         `http://localhost:3000/public/pokemon/${this.pokemon.name}/dislikes`,
         {
@@ -158,20 +217,107 @@ export default {
           body: `{"data": ${this.numDislikes}}`
         }
       );
-      //update liked list in backend user/name
-      sessionStorage.setItem(
-        `[${this.pokemon.name}][dislike]`,
-        this.isDisliked
-      );
+
+      // if not logged in, go to session storage
+      sessionStorage.setItem(`[${this.pokemon.name}][dislike]`, this.isDisliked);
+      // otherwise, set in backend
+      if (this.user != null) {
+        if (this.isDisliked) {
+          await fetch(`http://localhost:3000/user/dislikes`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            },
+            body: `{"data": ["${this.pokemon.name}"], "type": "merge"}`
+          });
+        } else {
+          // get array of dislikes
+          let dislikes = await fetch(`http://localhost:3000/user/dislikes`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            }
+          });
+
+          dislikes = await dislikes.json();
+          if (dislikes["err"] === undefined) {
+            dislikes = dislikes.result;
+          } else {
+            dislikes = [];
+          }
+          // update pokemon in array of likes
+          if (this.isDisliked == false) {
+            dislikes = dislikes.filter(name => name != this.pokemon.name);
+            await fetch(`http://localhost:3000/user/dislikes`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+              },
+              body: `{"data": ${JSON.stringify(dislikes)}}`
+            });
+          }
+          await fetch(`http://localhost:3000/user/dislikes`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            },
+            body: `{"data": ["${this.pokemon.name}"], "type": "merge"}`
+          });
+        }
+      }
     },
 
-    handleTeamButton() {
-      this.isOnTeam = !this.isOnTeam;
-      if (this.isOnTeam == false) {
-        // update team in backend/user/team
+    handleTeamButton: async function() {
+      let team = await fetch(
+        `http://localhost:3000/private/teams/${this.user}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+          }
+        }
+      );
+
+      team = await team.json();
+      if (team["err"] === undefined) {
+        team = team.result;
+      } else {
+        team = [];
+      }
+      if (!this.isOnTeam == false) {
+        this.isOnTeam = !this.isOnTeam;
+        team = team.filter(name => name != this.pokemon.name);
+        // console.log(JSON.stringify(team))
+        await fetch(`http://localhost:3000/private/teams/${this.user}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+          },
+          body: `{"data": ${JSON.stringify(team)}}`
+        });
       } else {
         // check if team size is < 6
-        // update team in backend/user/team
+        if (team.length < 6) {
+          this.isOnTeam = !this.isOnTeam;
+
+          // update team in backend/user/team
+          await fetch(`http://localhost:3000/private/teams/${this.user}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            },
+            body: `{"data": ["${this.pokemon.name}"], "type": "merge"}`
+          });
+        } else {
+          console.log("team size =6");
+        }
       }
     }
   }

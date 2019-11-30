@@ -1,20 +1,20 @@
 {
   "pokemon": {
     "bulbasaur": {
-      "likes": 1,
-      "dislikes": 2
+      "likes": 0,
+      "dislikes": 20
     },
     "ivysaur": {
       "likes": 3,
-      "dislikes": 4
+      "dislikes": 7
     },
     "venusaur": {
-      "likes": 1,
+      "likes": 2,
       "dislikes": 0
     },
     "wartortle": {
       "dislikes": 2,
-      "likes": 2
+      "likes": 3
     },
     "raticate": {
       "dislikes": 1
@@ -39,21 +39,23 @@
       "dislikes": 1
     },
     "charizard": {
-      "dislikes": 1,
-      "likes": 0
-    },
-    "blastoise": {
+      "dislikes": 2,
       "likes": 1
     },
+    "blastoise": {
+      "likes": 1,
+      "dislikes": 0
+    },
     "squirtle": {
-      "dislikes": 1
+      "dislikes": 1,
+      "likes": 1
     },
     "jigglypuff": {
       "dislikes": 1,
       "likes": 1
     },
     "metapod": {
-      "dislikes": 0
+      "dislikes": 1
     },
     "golduck": {
       "likes": 1
@@ -61,6 +63,29 @@
     "charmander": {
       "likes": 0,
       "dislikes": 0
+    },
+    "charmeleon": {
+      "likes": 1,
+      "dislikes": 0
+    },
+    "gloom": {
+      "likes": 1
+    },
+    "ninetales": {
+      "dislikes": 1
+    },
+    "parasect": {
+      "dislikes": 1
+    },
+    "caterpie": {
+      "dislikes": 1,
+      "likes": 0
+    },
+    "butterfree": {
+      "dislikes": 1
+    },
+    "darkrai": {
+      "likes": 1
     }
   }
 }
