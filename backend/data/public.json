@@ -1,7 +1,7 @@
 {
   "pokemon": {
     "bulbasaur": {
-      "likes": 0,
+      "likes": 1,
       "dislikes": 20
     },
     "ivysaur": {
@@ -85,6 +85,15 @@
       "dislikes": 1
     },
     "darkrai": {
+      "likes": 1
+    },
+    "torchic": {
+      "likes": 1
+    },
+    "mudkip": {
+      "likes": 1
+    },
+    "starmie": {
       "likes": 1
     }
   }

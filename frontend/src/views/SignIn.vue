@@ -7,6 +7,7 @@
       :rules="passwordRules"
       :type="'password'"
       label="Password"
+      @keyup.enter="submitForm"
       required
     ></v-text-field>
     <v-btn color="red darken-3" dark depressed @click="submitForm">Sign in</v-btn>
