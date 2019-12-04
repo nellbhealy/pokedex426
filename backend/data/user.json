@@ -24,7 +24,18 @@
     "likes": [
       "torchic",
       "mudkip",
-      "starmie"
+      "starmie",
+      "bulbasaur",
+      "scyther",
+      "blastoise",
+      "butterfree",
+      "pidgey",
+      "pidgeotto",
+      "pidgeot"
+    ],
+    "dislikes": [
+      "metapod",
+      "kakuna"
     ]
   }
 }

@@ -1,12 +1,12 @@
 {
   "pokemon": {
     "bulbasaur": {
-      "likes": 1,
-      "dislikes": 20
+      "likes": 3,
+      "dislikes": 0
     },
     "ivysaur": {
       "likes": 3,
-      "dislikes": 7
+      "dislikes": 0
     },
     "venusaur": {
       "likes": 2,
@@ -27,23 +27,23 @@
     },
     "pidgeot": {
       "dislikes": 1,
-      "likes": 1
+      "likes": 2
     },
     "pidgeotto": {
-      "likes": 1
+      "likes": 2
     },
     "beedrill": {
       "dislikes": 1
     },
     "kakuna": {
-      "dislikes": 1
+      "dislikes": 2
     },
     "charizard": {
       "dislikes": 2,
       "likes": 1
     },
     "blastoise": {
-      "likes": 1,
+      "likes": 2,
       "dislikes": 0
     },
     "squirtle": {
@@ -55,7 +55,7 @@
       "likes": 1
     },
     "metapod": {
-      "dislikes": 1
+      "dislikes": 2
     },
     "golduck": {
       "likes": 1
@@ -82,7 +82,8 @@
       "likes": 0
     },
     "butterfree": {
-      "dislikes": 1
+      "dislikes": 1,
+      "likes": 1
     },
     "darkrai": {
       "likes": 1
@@ -94,6 +95,12 @@
       "likes": 1
     },
     "starmie": {
+      "likes": 1
+    },
+    "scyther": {
+      "likes": 1
+    },
+    "pidgey": {
       "likes": 1
     }
   }
