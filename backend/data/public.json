@@ -1,11 +1,11 @@
 {
   "pokemon": {
     "bulbasaur": {
-      "likes": 3,
+      "likes": 2,
       "dislikes": 0
     },
     "ivysaur": {
-      "likes": 3,
+      "likes": 4,
       "dislikes": 0
     },
     "venusaur": {

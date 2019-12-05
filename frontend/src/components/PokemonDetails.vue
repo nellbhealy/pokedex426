@@ -179,6 +179,32 @@ export default {
         if (team['err'] === undefined) {
           this.isOnTeam = team.result.find((name) => name === pokemon);
         }
+
+        let likes = await fetch(`http://localhost:3000/user/likes`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            },
+          });
+
+        likes = await likes.json();
+        if (likes["err"] === undefined) {
+          this.isLiked = likes.result.find(name => name === pokemon);
+        }
+
+        let dislikes = await fetch(`http://localhost:3000/user/dislikes`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("jwt")}`
+            },
+          });
+
+        dislikes = await dislikes.json();
+        if (dislikes["err"] === undefined) {
+          this.isDisliked = dislikes.result.find(name => name === pokemon);
+        }
       }
     },
 
@@ -239,7 +265,8 @@ export default {
               body: `{"data": ${JSON.stringify(likes)}}`
             });
           }
-          await fetch(`http://localhost:3000/user/likes`, {
+          else {
+            await fetch(`http://localhost:3000/user/likes`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -247,6 +274,7 @@ export default {
             },
             body: `{"data": ["${this.pokemon.name}"], "type": "merge"}`
           });
+          }
         }
       }
     },
@@ -308,7 +336,8 @@ export default {
               body: `{"data": ${JSON.stringify(dislikes)}}`
             });
           }
-          await fetch(`http://localhost:3000/user/dislikes`, {
+          else {
+            await fetch(`http://localhost:3000/user/dislikes`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -316,6 +345,7 @@ export default {
             },
             body: `{"data": ["${this.pokemon.name}"], "type": "merge"}`
           });
+          }
         }
       }
     },
