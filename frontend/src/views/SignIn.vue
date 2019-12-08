@@ -53,7 +53,6 @@ export default {
         tempJwt = JSON.parse(JSON.stringify(result.data));
         sessionStorage.setItem("jwt", tempJwt.jwt);
         sessionStorage.setItem("user", tempJwt.name);
-        console.log(v);
         v.$root.$children[0].user = tempJwt.name;
         v.$root.$children[0].header = "Hello ";
         v.$root.router.push("/trainercard");

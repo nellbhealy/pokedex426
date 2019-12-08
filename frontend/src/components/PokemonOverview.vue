@@ -180,7 +180,6 @@ export default {
       // otherwise, set in backend
       if (this.user != null) {
         if (this.isLiked) {
-          console.log("Bearer", sessionStorage.getItem("jwt"));
           await fetch(`http://localhost:3000/user/likes`, {
             method: "POST",
             headers: {

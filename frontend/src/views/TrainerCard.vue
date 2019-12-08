@@ -42,7 +42,7 @@ export default {
   mounted() {
     this.fetchTrainerInfo();
   },
-
+ 
   methods: {
     fetchTrainerInfo: async function() {
       // make backend call to get info of logged in user, if there is one

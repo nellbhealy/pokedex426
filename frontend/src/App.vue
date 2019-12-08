@@ -15,7 +15,7 @@
           <nav>
             <v-tabs :vertical="true" color="red darken-3" background-color="transparent">
               <v-tab key="pokedex" to="/pokedex">Pokedex</v-tab>
-              <v-tab key="teams" to="/teams">Browse Teams</v-tab>
+              <v-tab key="teams" to="/trainers">Browse Teams</v-tab>
               <v-tab
                 key="mytrainercard"
                 to="/trainercard"

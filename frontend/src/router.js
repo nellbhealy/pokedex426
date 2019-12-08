@@ -7,6 +7,8 @@ import SignIn from './views/SignIn.vue';
 import SignUp from './views/SignUp.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
 import PokemonList from './components/PokemonList.vue';
+import Team from './components/Team.vue'
+import TeamList from './components/TeamList.vue'
 
 Vue.use(Router)
 
@@ -42,7 +44,20 @@ export default new Router({
     {
       path: '/trainers',
       name: 'trainers',
-      component: Trainers
+      component: Trainers,
+      children: [
+        {
+          path: 'team/:name',
+          name: 'team', 
+          component: Team,
+          props: true,
+        }, 
+        {
+          path: '',
+          name: 'teamList',
+          component: TeamList
+        }
+      ]
     },
     {
       path: '/signin',
