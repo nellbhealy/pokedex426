@@ -1,6 +1,6 @@
 <template>
   <v-hover v-slot:default="{ hover }">
-    <v-card :elevation="hover ? 12 : 0" width="40vw" v-bind:id="team">
+    <v-card ripple :elevation="hover ? 5 : 2" v-bind:id="team">
       <v-row>
         <v-col class="d-flex flex-column justify-space-between">
           <div class="ps-3">

@@ -23,6 +23,13 @@
         "email": "lwbecker@live.unc.edu",
         "team": {}
       }
+    },
+    "bugcatcher": {
+      "passwordHash": "$2b$10$jZzkegTQBhf7wdNBZrqUWebyc5PAXzcjjphikplR073qxtxgQzW/q",
+      "data": {
+        "email": "bugcatcherphil@bugcatchersunited.net",
+        "team": {}
+      }
     }
   }
 }
