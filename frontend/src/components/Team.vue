@@ -10,12 +10,6 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <div class="caption grey--text">Trainer Name</div>
-          <div id="trainer">{{team}}</div>
-        </v-col>
-      </v-row>
-      <v-row>
         <v-col v-for="pokemon in teamContent" :key="pokemon.id">
           <span class="overline">{{pokemon.name}}</span>
           <br />
