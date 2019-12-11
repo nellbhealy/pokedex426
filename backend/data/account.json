@@ -30,6 +30,13 @@
         "email": "bugcatcherphil@bugcatchersunited.net",
         "team": {}
       }
+    },
+    "gary": {
+      "passwordHash": "$2b$10$v/X.f188DoZ9xF04nfT8F.nXsTHv6MBDfOKHagG7NGq5sjGlo2O46",
+      "data": {
+        "email": "gary@unc.edu",
+        "team": {}
+      }
     }
   }
 }

@@ -45,6 +45,7 @@ export default new Router({
       path: '/trainers',
       name: 'trainers',
       component: Trainers,
+      props: true,
       children: [
         {
           path: 'team/:name',

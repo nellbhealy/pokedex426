@@ -12,10 +12,21 @@
             class="mt-4"
             to="/signin"
           >Sign in</v-btn>
+          <v-btn
+            v-if="user != null"
+            outlined
+            color="red darken-3"
+            class="mt-4"
+            @click="handleSignout()"
+          >Sign out</v-btn>
           <nav>
             <v-tabs :vertical="true" color="red darken-3" background-color="transparent">
               <v-tab key="pokedex" to="/pokedex">Pokedex</v-tab>
-              <v-tab key="teams" to="/trainers">Browse Teams</v-tab>
+              <v-tab 
+                key="teams" 
+                to="/trainers"
+                :disabled="user === null ? true : false"
+              >Browse Teams</v-tab>
               <v-tab
                 key="mytrainercard"
                 to="/trainercard"
@@ -50,6 +61,16 @@ export default {
     this.user = sessionStorage.getItem("user");
     if (this.user != null) {
       this.header = "Hello ";
+    }
+  },
+
+  methods: {
+    handleSignout() {
+      this.user = null;
+      sessionStorage.removeItem("jwt");
+      sessionStorage.removeItem("user");
+      this.header = "Log in to get full access";
+      this.$router.push({name: 'signin'});
     }
   }
 };
