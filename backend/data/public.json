@@ -17,14 +17,13 @@
       "likes": 3
     },
     "raticate": {
-      "dislikes": 1
+      "dislikes": 2
     },
     "spearow": {
       "dislikes": 1
     },
     "fearow": {
-      "dislikes": 1,
-      "likes": 1
+      "dislikes": 1
     },
     "pidgeot": {
       "dislikes": 1,
@@ -62,7 +61,7 @@
       "likes": 1
     },
     "charmander": {
-      "likes": 0,
+      "likes": 1,
       "dislikes": 0
     },
     "charmeleon": {
@@ -103,6 +102,12 @@
       "dislikes": 1
     },
     "pidgey": {
+      "likes": 1
+    },
+    "nidoqueen": {
+      "likes": 1
+    },
+    "dialga": {
       "likes": 1
     }
   }

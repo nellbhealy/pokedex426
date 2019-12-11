@@ -58,6 +58,20 @@
         "email": "bobbarker@gmail.org",
         "team": {}
       }
+    },
+    "timmy t": {
+      "passwordHash": "$2b$10$KRtALT9349FnbQudnjeVleDm.C/.Mqf0aL/79TeVkVzKE6pE4ggzO",
+      "data": {
+        "email": "timmy@t.com",
+        "team": {}
+      }
+    },
+    "kyle": {
+      "passwordHash": "$2b$10$zmWntZvsfgGBCsv0lI.Ey.tU1Sn/R6vtFzN4x.3bQFXrA5.e.B9pu",
+      "data": {
+        "email": "kyle@pokemon.gov",
+        "team": {}
+      }
     }
   }
 }
