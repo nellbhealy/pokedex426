@@ -30,6 +30,27 @@
         "email": "bugcatcherphil@bugcatchersunited.net",
         "team": {}
       }
+    },
+    "truckerdan": {
+      "passwordHash": "$2b$10$34ykDkwp4SaYcQCxpprWD./DWLrnW6KxnW9qCGDTd.PbhUyms0fFS",
+      "data": {
+        "email": "truckerdan@hotmail.com",
+        "team": {}
+      }
+    },
+    "barbara": {
+      "passwordHash": "$2b$10$05Z6fmix1dyvQI/tNLBhRuwrZ8fDxGkNMLeFQLcOOlLe2wR8H487u",
+      "data": {
+        "email": "barbara@ymail.com",
+        "team": {}
+      }
+    },
+    "ash": {
+      "passwordHash": "$2b$10$BlfcPMW/sXKxvufAC9o4HueF1C5oxQJqG1ca9rHWAYP95Gml5JtgG",
+      "data": {
+        "email": "ash@unc.edu",
+        "team": {}
+      }
     }
   }
 }

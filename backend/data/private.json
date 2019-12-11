@@ -18,6 +18,26 @@
       "venomoth",
       "parasect",
       "pinsir"
+    ],
+    "truckerdan": [
+      "hitmonlee",
+      "hitmonchan",
+      "machamp",
+      "lucario"
+    ],
+    "barbara": [
+      "arbok",
+      "pikachu",
+      "raichu",
+      "sandslash",
+      "oddish",
+      "persian"
+    ],
+    "ash": [
+      "venusaur",
+      "charizard",
+      "blastoise",
+      "parasect"
     ]
   }
 }
