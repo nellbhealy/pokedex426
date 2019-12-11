@@ -47,6 +47,7 @@
     </v-btn>-->
 
     <v-btn color="red darken-3" dark depressed @click="submitForm">Sign up</v-btn>
+      <v-btn depressed to="/signin">Login to existing account</v-btn>
   </v-form>
 </template>
 

@@ -92,8 +92,6 @@ export default {
           this.fetchedTeams.push(tempTeam);
         }
       }
-      
-
     }
   }
 };

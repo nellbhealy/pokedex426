@@ -1,7 +1,13 @@
 <template>
   <v-form ref="form" v-model="valid">
     <h1>Sign in</h1>
-    <v-text-field v-model="name" :rules="nameRules" label="Name" required></v-text-field>
+    <v-text-field 
+      v-model="name" 
+      :rules="nameRules" 
+      label="Trainer Name" 
+      required
+      color="red darken-3"
+    ></v-text-field>
     <v-text-field
       v-model="password"
       :rules="passwordRules"
@@ -9,6 +15,7 @@
       label="Password"
       @keyup.enter="submitForm"
       required
+      color="red darken-3"
     ></v-text-field>
     <v-btn color="red darken-3" dark depressed @click="submitForm">Sign in</v-btn>
     <v-btn depressed to="/signup">Create Account</v-btn>

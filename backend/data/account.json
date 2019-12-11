@@ -51,6 +51,13 @@
         "email": "ash@unc.edu",
         "team": {}
       }
+    },
+    "bob barker": {
+      "passwordHash": "$2b$10$9rDdSpEW48eu0WEkDzFop.5GIB0X3Re0plnJyc/2t46mLoGUTPSR2",
+      "data": {
+        "email": "bobbarker@gmail.org",
+        "team": {}
+      }
     }
   }
 }
