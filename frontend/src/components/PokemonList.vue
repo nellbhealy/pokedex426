@@ -1,22 +1,29 @@
 // Template is like the 'view' in this case; basically an html template
 <template>
   <div>
-    <!-- Autocomplete search for Pokemon -->
-    <!-- TODO: make this go to details page on click -->
-    <v-autocomplete dense dark filled label="Search for Pokemon" :items="pokemon" v-model="search"></v-autocomplete>
+    <v-autocomplete
+      dense
+      dark
+      filled
+      label="Search for Pokemon"
+      :items="items"
+      v-model="model"
+      :search-input.sync="searching"
+      :loading="isLoading"
+      hide-no-data
+      color="white"
+    ></v-autocomplete>
 
     <!-- List of all Pokemon, which is dynamically fetched and rendered -->
     <PokemonOverview
       :pokemon="pokemon"
       class="mt-2"
       v-for="pokemon in fetchedPokemon"
-      :key="pokemon['name']">
-    </PokemonOverview>
+      :key="pokemon['name']"
+    ></PokemonOverview>
   </div>
 </template>
 
-// Script is the 'controller' 
-// Contains registration of components, js functions to control the view, etc.
 <script>
 // In order to use a component within a view, we need to (1) import it
 import PokemonOverview from "./PokemonOverview";
@@ -29,8 +36,11 @@ export default {
   },
   data() {
     return {
-      search: null,
+      model: null,
+      searching: null,
+      isLoading: false,
       fetchedPokemon: [],
+      items: [],
       //use this pre-defined array for autocomplete to save time
       pokemon: [
         "Bulbasaur",
@@ -842,26 +852,44 @@ export default {
         "Zeraora",
         "Meltan",
         "Melmetal"
-      ],
-      // pokemonToRender: []
+      ]
     };
   },
 
   watch: {
-    search: async function(curr, old) {
+    model: async function(curr, old) {
       if (curr != null) {
-        let pokemon = this.fetchedPokemon.find((element) => {console.log(element.name); return element.name === curr.toLowerCase()});
-        console.log(pokemon, curr.toLowerCase());
+        let pokemon = this.fetchedPokemon.find(element => {
+          console.log(element.name);
+          return element.name === curr.toLowerCase();
+        });
         //if not in fetchedPokemon, fetch that particular pokemon now
         if (pokemon === undefined) {
           let response = await fetch(
-          `https://fizal.me/pokeapi/api/v2/name/${curr.toLowerCase()}.json`
-        );
+            `https://fizal.me/pokeapi/api/v2/name/${curr.toLowerCase()}.json`
+          );
           pokemon = await response.json();
         }
-        //redirect with that pokemon's info in the path parameters 
-        this.$router.push({name: 'details', params: {...pokemon}, id: pokemon.name})
+        //redirect with that pokemon's info in the path parameters
+          this.$router.push({
+            name: "details",
+            params: { ...pokemon },
+            id: pokemon.name
+          });
+        this.items = [];
       }
+    },
+
+    searching(val) {
+      console.log("searching");
+      this.isLoading = true;
+      this.fetchEntriesDebounced();
+      // let temp = this.search;
+      // this.search = [];
+      // setTimeout(() => {
+      //   // this.search = temp;
+      //   // this.isLoading = false;
+      // }, 3000)
     }
   },
 
@@ -871,6 +899,14 @@ export default {
   },
 
   methods: {
+    fetchEntriesDebounced() {
+      clearTimeout(this.timerId);
+      this.timerId = setTimeout(() => {
+        this.items = this.pokemon;
+        this.isLoading = false;
+      }, 500);
+    },
+
     //use for infinite scrolling
     scroll() {
       window.onscroll = () => {
