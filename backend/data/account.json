@@ -31,10 +31,45 @@
         "team": {}
       }
     },
-    "gary": {
-      "passwordHash": "$2b$10$v/X.f188DoZ9xF04nfT8F.nXsTHv6MBDfOKHagG7NGq5sjGlo2O46",
+    "truckerdan": {
+      "passwordHash": "$2b$10$34ykDkwp4SaYcQCxpprWD./DWLrnW6KxnW9qCGDTd.PbhUyms0fFS",
       "data": {
-        "email": "gary@unc.edu",
+        "email": "truckerdan@hotmail.com",
+        "team": {}
+      }
+    },
+    "barbara": {
+      "passwordHash": "$2b$10$05Z6fmix1dyvQI/tNLBhRuwrZ8fDxGkNMLeFQLcOOlLe2wR8H487u",
+      "data": {
+        "email": "barbara@ymail.com",
+        "team": {}
+      }
+    },
+    "ash": {
+      "passwordHash": "$2b$10$BlfcPMW/sXKxvufAC9o4HueF1C5oxQJqG1ca9rHWAYP95Gml5JtgG",
+      "data": {
+        "email": "ash@unc.edu",
+        "team": {}
+      }
+    },
+    "bob barker": {
+      "passwordHash": "$2b$10$9rDdSpEW48eu0WEkDzFop.5GIB0X3Re0plnJyc/2t46mLoGUTPSR2",
+      "data": {
+        "email": "bobbarker@gmail.org",
+        "team": {}
+      }
+    },
+    "timmy t": {
+      "passwordHash": "$2b$10$KRtALT9349FnbQudnjeVleDm.C/.Mqf0aL/79TeVkVzKE6pE4ggzO",
+      "data": {
+        "email": "timmy@t.com",
+        "team": {}
+      }
+    },
+    "kyle": {
+      "passwordHash": "$2b$10$zmWntZvsfgGBCsv0lI.Ey.tU1Sn/R6vtFzN4x.3bQFXrA5.e.B9pu",
+      "data": {
+        "email": "kyle@pokemon.gov",
         "team": {}
       }
     }

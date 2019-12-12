@@ -8,9 +8,9 @@
         </v-col>
         <v-progress-circular
             :rotate="360"
-            :size="70"
+            :size="70" 
             :width="10"
-            :value="team.length / 6 * 100"
+            :value="(teamContent.length / 6) * 100"
             color="red darken-3"
             class="ma-3"
           >{{teamContent.length}} / 6</v-progress-circular>
@@ -71,10 +71,10 @@ export default {
         response.forEach(promise => {
           promise.then(result => {
             this.teamContent.push(result);
-          });
+
+        });
         });
       }
-      console.log(this.teamContent);
     }
   }
 };

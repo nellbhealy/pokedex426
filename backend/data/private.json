@@ -19,13 +19,43 @@
       "parasect",
       "pinsir"
     ],
-    "gary": [
-      "carvanha",
-      "spoink",
-      "popplio",
-      "fearow",
-      "butterfree",
-      "dugtrio"
+    "truckerdan": [
+      "hitmonlee",
+      "hitmonchan",
+      "machamp",
+      "lucario"
+    ],
+    "barbara": [
+      "arbok",
+      "pikachu",
+      "raichu",
+      "sandslash",
+      "oddish",
+      "persian"
+    ],
+    "ash": [
+      "venusaur",
+      "charizard",
+      "blastoise",
+      "parasect"
+    ],
+    "bob barker": [
+      "mewtwo",
+      "moltres",
+      "darkrai",
+      "kyogre",
+      "palkia",
+      "pidgey"
+    ],
+    "timmy t": [
+      "weedle",
+      "arbok",
+      "nidoqueen"
+    ],
+    "kyle": [
+      "charmander",
+      "squirtle",
+      "bulbasaur"
     ]
   }
 }
